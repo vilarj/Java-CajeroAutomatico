@@ -12,13 +12,10 @@ import java.util.Scanner;
 public abstract class Funcionalidades {
 	
 	Scanner entrada = new Scanner(System.in); // Objecto de tipo Scanner para almacenar desde teclado
-	protected String contraseña;
+	protected String contraseÃ±a;
 	protected int idUsuario;
-	protected int opcionTransaccion;
-	protected double transaccion; // modificador privado
-	protected int opcionRetiro;
+	protected double transaccion; // modificador protected
 	protected double retiro; // para poder usarlo solo dentro de las clases
-	protected int opcionDeposito;
 	protected double deposito; // que existen en este paquete (clases)
 	private static double saldo; // mod privado y campo static porque no queremos que esta informacion salga de esta clase
 	
@@ -37,25 +34,26 @@ public abstract class Funcionalidades {
 		System.out.print("\n*********************************");
 		System.out.print("\n*********************************");
 		
-		System.out.print("\nContraseña: ");
-		contraseña = entrada.next();
+		System.out.print("\nContraseÃ±a: ");
+		contraseÃ±a = entrada.next();
 		
 		int cambios = 0;
 		int usuario = 0;
+		
 		do {
-		do {
-			System.out.print("Bienvenido, " + idUsuario + ". Que desea hacer?"
-					+ "\n1. Consultar su balance"
-					+ "\n2. Retirar dinero"
-					+ "\n3. Depositar dinero"
-					+ "\n4. Salir\n");
-			usuario = entrada.nextInt();
-			System.out.print("\n*********************************");
-			
-			// Controlando la opcion del usuario
-			if(usuario >= 1 && usuario <= 4) {cambios = 1;}
-			else {System.out.print("\n*********************************"); System.out.print("\nOpcion invalida.");}
-		}
+			do {
+				System.out.print("Bienvenido, " + idUsuario + ". Que desea hacer?"
+						+ "\n1. Consultar su balance"
+						+ "\n2. Retirar dinero"
+						+ "\n3. Depositar dinero"
+						+ "\n4. Salir\n");
+				usuario = entrada.nextInt();
+				System.out.print("\n*********************************");
+				
+				// Controlando la opcion del usuario
+				if(usuario >= 1 && usuario <= 4) {cambios = 1;}
+				else {System.out.print("\n*********************************"); System.out.print("\nOpcion invalida.");}
+			}
 		
 		while(cambios == 0);
 	
@@ -86,19 +84,20 @@ public abstract class Funcionalidades {
 	/**
 	 * Este metodo maneja la opcion del retiro
 	 */
-	public void Retiro() {opcionRetiro = entrada.nextInt();}
+	public void Retiro() {retiro = entrada.nextDouble();}
 	
 	/**
 	 * Este metodo maneja la opcion del deposito
 	 */
-	public void Deposito() {opcionDeposito = entrada.nextInt();}
+	public void Deposito() {deposito = entrada.nextDouble();}
 	
 	/**
 	 * Este metodo maneja la opcion de la salida
 	 */
 	public void Salir() {
 		System.out.print("\n*********************************");
-		System.out.print("Gracias por usar nuestros servicios.");
+		System.out.print("\nGracias por usar nuestros servicios.");
+		System.exit(0);
 	}
 	
 	// Polimorfismo: Metodo Abstracto
@@ -106,22 +105,6 @@ public abstract class Funcionalidades {
 	
 	// Getter
 	public double getSaldo() {return saldo;}
-	
-	public double getRetiro() {
-		double cantidadRetiro;
-		
-		cantidadRetiro = getSaldo();
-		
-		return cantidadRetiro;
-	}
-	
-	public double getDeposito() {
-		double cantidadDeposito;
-		
-		cantidadDeposito = getDeposito();
-		
-		return cantidadDeposito;
-	}
 	
 	// Setter
 	public void setSaldo(double s) {
