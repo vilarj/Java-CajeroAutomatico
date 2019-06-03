@@ -1,3 +1,4 @@
+package clases;
 
 /**
  * Clase Main donde se comunica con las otras clases para correr el programa
@@ -9,7 +10,7 @@ public class Main {
 
 	public static void main(String... args) {
 		Funcionalidades opcion = new Consulta();
-		opcion.setSaldo(2500.00);
+		opcion.setSaldo(10 * Math.round(200 * Math.random()));
 		opcion.Funciones();
 	}
 }
